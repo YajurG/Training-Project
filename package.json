@@ -1,0 +1,20 @@
+{
+  "name": "server_call",
+  "version": "1.0.0",
+  "description": "Program to make a call to the server and retrieve data",
+  "main": "db_connection.js",
+  "dependencies": {
+    "async": "^2.5.0",
+    "express": "^4.15.3",
+    "mysql": "^2.13.0",
+    "pug": "^2.0.0-rc.2",
+    "react-bootstrap": "^0.31.1",
+    "react-dom": "^15.6.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yajur Grover",
+  "license": "ISC"
+}
