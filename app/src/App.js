@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import {Grid, Row, Col, Button, Radio} from 'react-bootstrap';
+import {user_type} from '../../test.js'
 
 
 class App extends Component {
@@ -16,7 +17,7 @@ class App extends Component {
 
   componentDidMount(){
     //fetch call to server
-    const url = "/training/doctor"
+    const url = "https://localhost:3001/training/"+ user_type
     fetch(url)
     .then((response) =>{
       console.log(response);
@@ -77,7 +78,7 @@ class App extends Component {
       )
 
     const button = (
-      <Button bsStyle="primary" onclick = {this.nextQuestion(1)}> Next Question </Button>
+      <Button bsStyle="primary"> Next Question </Button>
     )
 
 
