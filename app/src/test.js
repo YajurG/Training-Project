@@ -26,7 +26,7 @@ app.get('/training/:user_type', function (req, res) {
   var sql_command_1 = "SELECT * FROM questions WHERE type = ?"
   var sql_command_2 = "SELECT * FROM answers WHERE question_id = ?"
 
-    connection.query(sql_command_1, user_type, function (error, results) {
+    /*connection.query(sql_command_1, user_type, function (error, results) {
       async.forEachSeries(results, function(value, callback){
         questions.push(value.question_text);
         question_ids.push(value.question_id);
@@ -44,8 +44,10 @@ app.get('/training/:user_type', function (req, res) {
         })
       })
     })
-  res.json({"Type": user_type, "Questions": questions, "Answers": answers})
+    res.json({"Type": user_type, "Questions": questions, "Answers": answers})*/
+res.send('hello world')
 })
+
 
 
 
