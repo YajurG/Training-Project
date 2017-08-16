@@ -1,4 +1,7 @@
+
+
 {
+  "_comment": "The package.json file for the react app",
   "name": "app",
   "version": "0.1.0",
   "private": true,

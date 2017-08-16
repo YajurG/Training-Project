@@ -1,4 +1,5 @@
 {
+  "_comment": "package.json file for the server",
   "name": "server_call",
   "version": "1.0.0",
   "description": "Program to make a call to the server and retrieve data",
