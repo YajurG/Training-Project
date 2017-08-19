@@ -8,7 +8,7 @@ var connection = mysql.createConnection({
   database: "myDB"
 });
 
-var sql_command = "INSERT INTO answers (question_id, answer_text) VALUES (4, 'All of the above')";
+var sql_command = "SELECT * FROM questions q LEFT JOIN answers a ON q.question_id = a.question_id WHERE q.type = ?";
 
 function getQuestionNumber(number){
   connection.query("SELECT * FROM questions LIMIT 1 OFFSET ?", (number - 1), function(err, results){
@@ -46,17 +46,17 @@ var answers_data = [
 
 
 
-/*connection.query(sql_command, answers_data, function(err, result){
+connection.query(sql_command, answers_data, function(err, result){
   if (err) throw err;
   console.log(result);
-});*/
+});
 
 /*connection.query("SELECT * FROM questions", function(err, result){
   if (err) throw err;
   console.log(result);
 });*/
 
-connection.query('SELECT * FROM answers', function(err, result){
+/*connection.query('SELECT * FROM answers', function(err, result){
   if (err) throw err;
   console.log(result);
-});
+});*/ 

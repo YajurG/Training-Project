@@ -20,7 +20,7 @@ class App extends Component {
     fetch(url)
     .then((response) =>{
       console.log(response);
-      response.json()
+      return response.json()
     })
       .then((data)=>{
           console.log(data);
@@ -50,33 +50,6 @@ class App extends Component {
 
 
       const data = this.state.data;
-      const userName = (
-        <Grid>
-          <Row>
-            <Col xs={12} md={8}> User: {data.User} </Col>
-          </Row>
-        </Grid>
-      )
-
-      const test = (
-        <Grid>
-          <Row>
-            <Col xs={6} md={6}> {data.Question} </Col>
-          </Row>
-          <Row>
-            <Col xs={6} md={6}> <Radio name="answerChoice" checked="true" inline> A: {data.Answer.A} </Radio> </Col>
-            <Col xs={6} md={6}> <Radio name="answerChoice" inline>  B: {data.Answer.B} </Radio> </Col>
-          </Row>
-          <Row>
-            <Col xs={6} md={6}> <Radio name="answerChoice" inline> C: {data.Answer.C} </Radio> </Col>
-            <Col xs={6} md={6}> <Radio name="answerChoice" inline>  D: {data.Answer.D} </Radio> </Col>
-          </Row>
-        </Grid>
-      )
-
-    const button = (
-      <Button bsStyle="primary"> Next Question </Button>
-    )
 
 
 
@@ -84,15 +57,15 @@ class App extends Component {
       <div>
         <div className="App-header">
             <div>
-              {userName}
+              Hello!
             </div>
         </div>
         <div className="App">
           <div>
-            {test}
+            {data}
           </div>
           <div>
-            {button}
+            Thank you!
           </div>
         </div>
       </div>
