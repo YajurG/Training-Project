@@ -2,8 +2,11 @@ var express = require('express');
 var mysql = require('mysql');
 var path = require('path');
 var async = require('async')
+var bodyParser = require('body-parser')
 
 var app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 
 var connection = mysql.createConnection({
   host: "localhost",
@@ -19,11 +22,12 @@ var question_ids = [];
 var answers = [];
 var answer_ids = []
 
-
-app.get('/training/:user_type', function (req, res) {
+app.get('/training/:user_type/:user_id', function (req, res) {
   var user_type = req.params.user_type // gets the value for the named parameter user_id from the url
+  var user_id = req.params.user_id
   var sql_command_1 = "SELECT * FROM questions q LEFT JOIN answers a ON q.question_id = a.question_id WHERE q.type = ?"
   var sql_command_2 = "SELECT * FROM answers WHERE question_id = ?"
+  var sql_command_3 = "SELECT * FROM users WHERE user_id = ? "
 
     /*connection.query(sql_command_1, user_type, function (error, results) {
       async.forEachSeries(results, function(value, callback){
@@ -49,6 +53,10 @@ app.get('/training/:user_type', function (req, res) {
 
 function getResults(){
   return new Promise((resolve, reject) => {
+    connection.query(sql_command_3, user_id, function(error, results){
+      console.log(results)
+      var user_name = results[0].name
+
     connection.query(sql_command_1, user_type, function (error, results){
       for (var i = 0; i < results.length; i++){
         if (questions.indexOf(results[i].question_text) == -1){
@@ -68,8 +76,9 @@ function getResults(){
           break
         }
     }
-      resolve(res.json({"Type": user_type, "Questions": questions, "Answers": answers}))
+      resolve(res.json({"Name": user_name, "ID": user_id, "Type": user_type, "Questions": questions, "Answers": answers}))
     })
+   })
   })
 }
 
@@ -134,8 +143,14 @@ function getAnswers(question_ids){ // old function using query for each result
 
     })
 
+  app.post('/training/submit', function(req, res){
+    var data = req.body;
+    console.log(data)
+    res.end('success')
+  })
+
 
 
 //use two functions for each query//
 
-app.listen(app.get('port'))
+app.listen(3001)
